@@ -26,7 +26,7 @@ class Timer extends Component {
         if(this.startTimer === false){
             this.startTimer = true
             this.currentInterval = setInterval(() => { 
-                if(this.state.remainingTime <= 0)
+                if(this.state.remainingTime <= 0) /* Stop the counter if the remaining time <= 0 */
                 {
                     clearInterval(this.currentInterval);
                 }
