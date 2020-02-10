@@ -9,7 +9,6 @@ class Timer extends Component {
         }
         this.startTimer = false /* is the timer already started counting down */
         this.currentInterval = Object /* Initialize intervel for decrementing the counter */
-        this.updateTime()
     }
 
     /* Parsing and updating timer */
