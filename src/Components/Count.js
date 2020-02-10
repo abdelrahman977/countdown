@@ -1,7 +1,7 @@
 import React , { Component } from 'react'
 import * as moment from 'moment'
 import DateTimePicker from 'react-datetime-picker';
-
+import Timer from './Timer'
 
 
 class Count extends Component{
@@ -10,11 +10,9 @@ class Count extends Component{
         this.state = {
             /* Initializing the two dates in the state and the countdown*/
             date1: new Date("2020-1-1"),
-            date2: new Date("2010-1-1"),
-            countdown: 0
-        }
-      
-    }    
+            date2: new Date("2020-1-1"),
+        } 
+    }
     /* updating the date1 when changing the first date picker */
     updateDate1 = date => {
         this.setState({
@@ -29,14 +27,14 @@ class Count extends Component{
       };
 
      /* Calculating the difference between the dates */
-    countdown() {
+    calculateTime = () => {
         const date1 = moment(this.state.date1) /* parsing first date using moment */
         const date2 = moment(this.state.date2) /* parsing second date using moment */
-        const totalHours = date2.diff(date1,'hours') /* using moment to calculate total hours */
-        const remainingMinutes = date2.diff(date1,'minutes') - (totalHours * 60)  /* using moment to calculate remaining minutes */
-        this.setState({
-            countdown: totalHours  + " Hour/s and " + remainingMinutes + " Minute/s" 
-        });
+        const totalSeconds = date2.diff(date1,'seconds') /* using moment to calculate total Seconds */
+        if(totalSeconds < 0)
+           return  /* return zeros if the "From" date was later than "To" date */
+        return totalSeconds
+        
     }   
     render(){
         return(
@@ -56,10 +54,9 @@ class Count extends Component{
                      onChange={this.updateDate2}
                      value={this.state.date2}
                      />
-                {/* countdown button */}
                 </div>
-                <button onClick={() => this.countdown()}>Calculate countdown</button>
-                <h1>{this.state.countdown}</h1>
+                 {/* Passing calculated time to Timer props*/}
+                <Timer time={this.calculateTime()} /> 
             </div>
         )       
     }
