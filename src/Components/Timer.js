@@ -33,8 +33,8 @@ class Timer extends Component {
                 this.updateTime(this.state.remainingTime)  
                 this.setState({ 
                     remainingTime: this.state.remainingTime - 1
-                  });
-                },1000)
+                });
+            },1000)
         }
     }
     render() {
@@ -51,12 +51,12 @@ class Timer extends Component {
         if (nextProps.time !== this.state.remainingTime) {
           this.startTimer = false
           this.setState({ 
-              remainingTime: nextProps.time
+            remainingTime: nextProps.time
             });
             this.updateTime(nextProps.time)
             clearInterval(this.currentInterval);
         }
-      }
+    }
   }
   
   export default Timer;
