@@ -15,25 +15,25 @@ class Count extends Component{
         }
       
     }    
-    /* updating the date1 when changing the first date picker*/
+    /* updating the date1 when changing the first date picker */
     updateDate1 = date => {
         this.setState({
             date1: date
         });
       };
-     /* updating the date2 when changing the second date picker*/
+     /* updating the date2 when changing the second date picker */
      updateDate2 = date => {
         this.setState({
             date2: date
         });
       };
 
-     /* Calculating the difference between the dates*/
+     /* Calculating the difference between the dates */
     countdown() {
-        const date1 = moment(this.state.date1) /* parsing first date using moment*/
-        const date2 = moment(this.state.date2) /* parsing second date using moment*/
-        const totalHours = date2.diff(date1,'hours') /* using moment to calculate total hours*/
-        const remainingMinutes = date2.diff(date1,'minutes') - (totalHours * 60)  /* using moment to calculate remaining minutes*/
+        const date1 = moment(this.state.date1) /* parsing first date using moment */
+        const date2 = moment(this.state.date2) /* parsing second date using moment */
+        const totalHours = date2.diff(date1,'hours') /* using moment to calculate total hours */
+        const remainingMinutes = date2.diff(date1,'minutes') - (totalHours * 60)  /* using moment to calculate remaining minutes */
         this.setState({
             countdown: totalHours  + " Hour/s and " + remainingMinutes + " Minute/s" 
         });
@@ -51,7 +51,7 @@ class Count extends Component{
                 </div>
                 {/* second datepicker */}
                 <div>
-                    From:&nbsp;
+                    To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <DateTimePicker
                      onChange={this.updateDate2}
                      value={this.state.date2}
