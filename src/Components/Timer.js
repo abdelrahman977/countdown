@@ -5,7 +5,7 @@ class Timer extends Component {
         super(props)
         this.state = {
             remainingTime: this.props.time, /* Calling prop passed from parent View */
-            remainingTimeText: "00:00:00",  /* Initialize Timer Text */
+            remainingTimeText: "0:0:0",  /* Initialize Timer Text */
         }
         this.startTimer = false /* is the timer already started counting down */
         this.currentInterval = Object /* Initialize intervel for decrementing the counter */
@@ -26,11 +26,15 @@ class Timer extends Component {
         if(this.startTimer === false){
             this.startTimer = true
             this.currentInterval = setInterval(() => { 
+                if(this.state.remainingTime <= 0)
+                {
+                    clearInterval(this.currentInterval);
+                }
                 this.updateTime(this.state.remainingTime)  
                 this.setState({ 
                     remainingTime: this.state.remainingTime - 1
                   });
-            },1000)
+                },1000)
         }
     }
     render() {
